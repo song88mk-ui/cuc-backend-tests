@@ -8,6 +8,10 @@ on:
   repository_dispatch:
     types: [run]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   dev:
     name: Dev
