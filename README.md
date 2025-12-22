@@ -18,9 +18,8 @@ Run Platform Scenarios against Public Endpoints:
 `$ bundle exec cucumber --tags @platformapi`
 
 4. Or read the `Rakefile` for the tasks:
-
+```
 $ rake dev:oddsfeed
 
 $ rake dev:platformapi
 ```
-.
