@@ -16,6 +16,7 @@ Feature: OddsFeed Client API
     When I set headers:
       | x-ip-address | 1.2.3.4 |
     When I send a GET request to "/v1/livestream/0" with the following:
+    Then show me the response
     Then the response status should be "400"
     And the JSON response should have "$.statusCode" with the text "123"
     And the JSON response should have "$.message" with the text "Fixture Has No Livestream"
