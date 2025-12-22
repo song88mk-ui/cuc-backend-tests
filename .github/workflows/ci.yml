@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  repository_dispatch:
+    types: [run]
+
+jobs:
+  dev:
+    name: Dev
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+      - run: |
+          ln -nsf .env.dev .env
+          source .env
+          echo "Using the following targets:"
+          echo "Platform API                 : $PLATFORM_PUBLIC_API"
+          echo "OddsFeed Client API          : $ODDSFEED_CLIENT_API"
+          echo "OddsFeed Client Platform API : $ODDSFEED_CLIENT_PLATFORM_API"
+      - name: OddsFeed
+        if: always()
+        run: bundle exec rake dev:oddsfeed
+        env:
+          SLACK_API_TOKEN: ${{ secrets.SLACK_API_TOKEN }}
+          ODDSFEED_API_KEY: ${{ secrets.ODDSFEED_API_KEY }}
+      - name: Platform API
+        if: always()
+        run: bundle exec rake dev:platformapi
+        env:
+          SLACK_API_TOKEN: ${{ secrets.SLACK_API_TOKEN }}
+          PLATFORM_API_INTERNAL_KEY: ${{ secrets.PLATFORM_API_INTERNAL_KEY }}
+          PLATFORM_API_KEY: ${{ secrets.PLATFORM_API_KEY }}

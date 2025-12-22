@@ -1,0 +1,7 @@
+---
+default: --require features --publish-quiet
+ci: --format pretty
+junit: --format junit --out results/junit
+html:  --format html --out results/index.html
+current: --format pretty --color --require features --publish-quiet --tags @current
+skip_known: --tags 'not @known'
