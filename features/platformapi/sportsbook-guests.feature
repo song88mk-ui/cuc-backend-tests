@@ -173,6 +173,203 @@ Feature: Platform Integration API - Sportsbook (Guest)
     And the JSON response should have "$.message" with the text "Success"
 
   @requires_client_id
+  Scenario: Get Sports - (Early)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 1 |
+      | fixtureScope    | -1 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Sports - (Live)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 1 |
+      | fixtureScope    | 1 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get ESports - As Used in Sportsbook Frontend
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 2   |
+      | minuteUTCOffset | 480 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get ESports - (No Fixture Scope / Today )
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 2 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get ESports - (Early)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 2 |
+      | fixtureScope    | -1 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get ESports - (Live)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 2 |
+      | fixtureScope    | 1 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Virtual Sports - As Used in Sportsbook Frontend
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 3   |
+      | minuteUTCOffset | 480 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Virtual Sports - (No Fixture Scope / Today )
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 3 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Virtual Sports - (Early)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 3 |
+      | fixtureScope    | -1 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Virtual Sports - (Live)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 3 |
+      | fixtureScope    | 1 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Sports and Virtual Sports - As Used in Sportsbook Frontend
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 4   |
+      | minuteUTCOffset | 480 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Sports and Virtual Sports - (No Fixture Scope / Today )
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 4 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Sports and Virtual Sports - (Early)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 4 |
+      | fixtureScope    | -1 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Sports and Virtual Sports - (Live)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 4 |
+      | fixtureScope    | 1 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Simulated Reality Sports - As Used in Sportsbook Frontend
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 5   |
+      | minuteUTCOffset | 480 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Simulated Reality Sports - (No Fixture Scope / Today )
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 5 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Simulated Reality Sports - (Early)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 5 |
+      | fixtureScope    | -1 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_client_id
+  Scenario: Get Simulated Reality Sports - (Live)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 5 |
+      | fixtureScope    | 1 |
+      | minuteUTCOffset | 0 |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+
+
+
+
+
+
+
+  @requires_client_id
   Scenario: Get Live Fixtures (Football)
     Given I have platform API Key
     When I send a GET request to "/v1/sportsbook/sports/livefixtures" with the following:

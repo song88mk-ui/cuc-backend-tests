@@ -174,6 +174,18 @@ Feature: Platform Integration API - Sportsbook (Authenticated)
     And the JSON response should have "$.message" with the text "Success"
 
   @requires_operator_token
+  Scenario: Get Sports - (Early)
+    When I send a GET request to "/v1/sportsbook/sports" with the following:
+    #Examples
+      | sportGroup      | 1 |
+      | fixtureScope    | -1 |
+      | minuteUTCOffset | 0 |
+    Then show me the response
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the JSON response should have "$.message" with the text "Success"
+
+  @requires_operator_token
   Scenario: Get Live Fixtures (Football)
     Given I have platform API Key
     When I send a GET request to "/v1/sportsbook/sports/livefixtures" with the following:
