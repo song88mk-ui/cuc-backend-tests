@@ -81,8 +81,8 @@ Feature: Platform Integration API - Betting
     }
     """
     Then the response status should be "400"
-    And the JSON response should have "$.statusCode" with the text "1000"
-    And the JSON response should have "$.message" with the text "Error"
+    And the "statusCode" should be "1000"
+    And the "message" should be "Error"
     And the "result" should be null
 
   @requires_operator_token
@@ -91,9 +91,10 @@ Feature: Platform Integration API - Betting
       | X-Client-Id | F5251362-64F1-4BF4-28E9-08D8EE99CA8E |
     When I send and accept JSON
     When I send a GET request to "/v1/bet/config" with the following:
-    #Examples:
       | currencyCode | EUR |
     Then the response status should be "200"
+    And the "statusCode" should be "100"
+    And the "message" should be "Success"
 
   @requires_operator_token
   @GM-115
@@ -104,9 +105,9 @@ Feature: Platform Integration API - Betting
     When I send a GET request to "/v1/bet/status" with the following:
       | betId | 00000000-0000-0000-0000-000000000000 |
     Then the response status should be "400"
-    And the JSON response should have "$.statusCode" with the text "1000"
-    And the JSON response should have "$.message" with the text "Object reference not set to an instance of an object."
-    And the JSON response should have "$.result" with the text "0"
+    And the "statusCode" should be "1000"
+    And the "message" should be "Object reference not set to an instance of an object."
+    And the "result" should be "0"
 
   @requires_operator_token
   @GM-115
@@ -117,5 +118,5 @@ Feature: Platform Integration API - Betting
     When I send a GET request to "/v1/bet/status" with the following:
       | betId | F3CC5901-D3FB-4A2F-36AB-08DE4F7FD84D |
     Then the response status should be "200"
-    And the JSON response should have "$.statusCode" with the text "100"
+    And the "statusCode" should be "100"
     And the "message" should be null
