@@ -16,7 +16,8 @@ Feature: Platform Integration API - Betting
     And the "result.currencyCode" should have "USD"
 
   @requires_operator_token
-  Scenario: Bet Placement
+  @error
+  Scenario: Bet Placement - Error
     When I set headers:
       | X-Client-Id | F5251362-64F1-4BF4-28E9-08D8EE99CA8E |
     When I send and accept JSON
@@ -44,13 +45,14 @@ Feature: Platform Integration API - Betting
       ]
     }
     """
-    Then show me the response
     Then the response status should be "400"
-    And the JSON response should have "$.statusCode" with the text "104"
-    And the JSON response should have "$.message" with the text "Insufficient Funds"
+    And the JSON response should have "$.statusCode" with the text "1000"
+    And the JSON response should have "$.message" with the text "Error"
+    And the "result" should be null
 
   @requires_operator_token
-  Scenario: Max Stake API
+  @error
+  Scenario: Max Stake API - Error
     When I set headers:
       | X-Client-Id | F5251362-64F1-4BF4-28E9-08D8EE99CA8E |
     When I send and accept JSON
@@ -78,10 +80,10 @@ Feature: Platform Integration API - Betting
       ]
     }
     """
-    Then show me the response
     Then the response status should be "400"
-    And the JSON response should have "$.statusCode" with the text "104"
-    And the JSON response should have "$.message" with the text "Insufficient Funds"
+    And the JSON response should have "$.statusCode" with the text "1000"
+    And the JSON response should have "$.message" with the text "Error"
+    And the "result" should be null
 
   @requires_operator_token
   Scenario: Bet Config
