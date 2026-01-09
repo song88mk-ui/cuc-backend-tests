@@ -94,14 +94,26 @@ Feature: Platform Integration API - Betting
     Then the response status should be "200"
 
   @requires_operator_token
-  Scenario: Bet Status
+  @GM-115
+  Scenario: Bet Status for Unknown betId
     When I add the operator token
-    When I set headers:
-      | X-Client-Id | F5251362-64F1-4BF4-28E9-08D8EE99CA8E |
+    When I use the test client id
     When I send and accept JSON
     When I send a GET request to "/v1/bet/status" with the following:
-    # Examples
-      | betId | 6c97ec01-8c6d-46ac-a84e-548f004de304 |
-    # assuming this bet id is not found on the db
+      | betId | 00000000-0000-0000-0000-000000000000 |
     Then the response status should be "400"
+    And the JSON response should have "$.statusCode" with the text "1000"
     And the JSON response should have "$.message" with the text "Object reference not set to an instance of an object."
+    And the JSON response should have "$.result" with the text "0"
+
+  @requires_operator_token
+  @GM-115
+  Scenario: Bet Status for known betId
+    When I add the operator token
+    When I use the test client id
+    When I send and accept JSON
+    When I send a GET request to "/v1/bet/status" with the following:
+      | betId | F3CC5901-D3FB-4A2F-36AB-08DE4F7FD84D |
+    Then the response status should be "200"
+    And the JSON response should have "$.statusCode" with the text "100"
+    And the "message" should be null

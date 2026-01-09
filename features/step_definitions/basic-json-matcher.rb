@@ -19,3 +19,15 @@ Then /^the "([^"]*)" should (not)?\s?(have|be) "([^"]*)"$/ do |negative, _, fiel
     end
   end
 end
+
+## nullability
+Then /^the "([^"]*)" should be null$/ do |field|
+  json = JSON.parse(last_response.body)
+  json_path = "$.#{field}"
+  result = JsonPath.new(json_path).on(json).to_a.map(&:to_s)
+  if self.respond_to?(:expect)
+    expect(result[0]).to eq("")
+  else
+    assert_nil result[0]
+  end
+end
