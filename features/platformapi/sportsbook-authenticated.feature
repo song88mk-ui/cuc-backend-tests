@@ -333,6 +333,6 @@ Feature: Platform Integration API - Sportsbook (Authenticated)
   @known
   Scenario: Bet Recommendations
     When I send a GET request to "/v1/sportsbook/betrecommendations" with the following:
-    #Examples:
       | currencyCode | EUR |
+    #Then show me the response
     Then the response status should be "200"

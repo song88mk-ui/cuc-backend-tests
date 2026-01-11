@@ -21,13 +21,21 @@ Then /^the "([^"]*)" should (not)?\s?(have|be) "([^"]*)"$/ do |negative, _, fiel
 end
 
 ## nullability
-Then /^the "([^"]*)" should be null$/ do |field|
+Then /^the "([^"]*)" should (not)? ?be null$/ do |field, negative|
   json = JSON.parse(last_response.body)
   json_path = "$.#{field}"
   result = JsonPath.new(json_path).on(json).to_a.map(&:to_s)
   if self.respond_to?(:expect)
-    expect(result[0]).to eq("")
+    if negative.present?
+      expect(result[0]).not_to eq("")
+    else
+      expect(result[0]).to eq("")
+    end
   else
-    assert_nil result[0]
+    if negative.present?
+      assert_nil !result[0]
+    else
+      assert_nil result[0]
+    end
   end
 end
