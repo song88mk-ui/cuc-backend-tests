@@ -328,11 +328,8 @@ Feature: Platform Integration API - Sportsbook (Authenticated)
     And the JSON response should have "$.message" with the text "Unsupported CurrencyCode"
 
   @requires_operator_token
-  @failing
-  @current
-  @known
   Scenario: Bet Recommendations
     When I send a GET request to "/v1/sportsbook/betrecommendations" with the following:
       | currencyCode | EUR |
-    #Then show me the response
     Then the response status should be "200"
+    And the JSON response should have "$.message" with the text "Success"
