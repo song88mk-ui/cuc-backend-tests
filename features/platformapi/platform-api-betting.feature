@@ -17,8 +17,6 @@ Feature: Platform Integration API - Betting
 
   @requires_operator_token
   Scenario: Bet Placement - Error Unknown FixtureId
-    When I set headers:
-      | X-Client-Id | F5251362-64F1-4BF4-28E9-08D8EE99CA8E |
     When I send and accept JSON
     When I send a POST request to "/v2/bet/placement" with the following:
     """
@@ -49,9 +47,8 @@ Feature: Platform Integration API - Betting
     And the "result" should be null
 
   @requires_operator_token
+  @known
   Scenario: Bet Placement - Ok
-    When I set headers:
-      | X-Client-Id | F5251362-64F1-4BF4-28E9-08D8EE99CA8E |
     When I send and accept JSON
     When I send a POST request to "/v2/bet/placement" with the following:
     """
@@ -60,17 +57,17 @@ Feature: Platform Integration API - Betting
       "OddsType": 0,
       "OddsChangeType": 1,
       "Channel": 0,
-      "IPAddress": "185.225.234.142",
+      "IPAddress": "185.134.234.153",
       "IPAddressV6": "",
       "IsBoosted": false,
       "IsBetBuilder": false,
       "Selections": [
       {
-          "SportId": 15,
-          "FixtureId": "1459433503086116864",
-          "MarketId": "1459433505523007488",
-          "SelectionId": "1459433505527201792",
-          "Odds": 1.33,
+          "SportId": 4,
+          "FixtureId": "1460954763473457152",
+          "MarketId": "1460954765826461696",
+          "SelectionId": "1460954765830656000",
+          "Odds": 1.48,
           "CorrelationId": "00000000"
         }
       ]
@@ -85,8 +82,6 @@ Feature: Platform Integration API - Betting
   @requires_operator_token
   @error
   Scenario: Max Stake API - Error
-    When I set headers:
-      | X-Client-Id | F5251362-64F1-4BF4-28E9-08D8EE99CA8E |
     When I send and accept JSON
     When I send a POST request to "/v2/bet/placement" with the following:
     """
@@ -119,8 +114,6 @@ Feature: Platform Integration API - Betting
 
   @requires_operator_token
   Scenario: Bet Config
-    When I set headers:
-      | X-Client-Id | F5251362-64F1-4BF4-28E9-08D8EE99CA8E |
     When I send and accept JSON
     When I send a GET request to "/v1/bet/config" with the following:
       | currencyCode | EUR |

@@ -1,6 +1,7 @@
 ---
 default: --require features --publish-quiet
 ci: --format pretty
+rp: --format ReportPortal::Cucumber::Formatter
 junit: --format junit --out results/junit
 html:  --format html --out results/index.html
 current: --format pretty --color --require features --publish-quiet --tags @current
